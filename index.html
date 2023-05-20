@@ -37,10 +37,20 @@
 <hr>
 
 <div>
-	<label>Idade: </label><input type="number" placeholder="ex: 34" id="inputIdade" @blur='setIdade()'>
+	<label>Idade: </label><input placeholder="ex: 34" id="inputIdade" @blur='setIdade()'>
 	<p v-if='idade < 18'><strong>Menor</strong> de 18 anos</p>
 	<p v-else><strong>Maior</strong> de 18 anos</p>
 </div>
+
+<div class='card'>
+	<label>Nota: </label><input  id="inputNota" @blur='setNota()'><br>
+	
+</div>
+	<p v-if="nota == ''">Digite a nota do aluno</p>
+	<p v-else-if='nota >= 7 && nota <= 10'>O aluno foi aprovado</p>
+	<p v-else-if='nota >= 5 && nota < 7'>Aluno em recuperação</p>
+	<p v-else-if='nota >= 0 && nota < 5'>O aluno foi reprovado</p>
+	<p v-else>A nota informada é inválida</p>
 </div>
 </div>
 
@@ -58,6 +68,8 @@
         mostrarSaldo: false,
         idade: 0,
         required: false,
+        nota: ''
+        ,
         pessoas: []
       }
     },
@@ -93,6 +105,11 @@
       },
       setIdade(){
       	this.idade = inputIdade.value
+      },
+
+      setNota(){
+      	console.log(inputNota.value)
+      	this.nota = inputNota.value
       }
     },
   }).mount('#app')
